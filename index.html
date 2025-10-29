@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的個人網頁</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>歡迎來到我的網頁</h1>
+        <br />
+        <nav>
+            <a href="#about">關於我</a>
+            <a href="#skills">技能</a>
+            <a href="#projects">專案</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>關於我</h2>
+            <br />
+            <p>
+                資工系大二學生
+                <br>
+                興趣:喜歡吃美食、健身、旅遊
+            </p>
+        </section>
+
+        <section id="skills">
+            <h2>目前學過</h2>
+            <br />
+            <div class="skill-list">
+                <div class="skill-item">Mysql</div>
+                <div class="skill-item">OracleDataBase</div>
+                <div class="skill-item">C</div>
+                <div class="skill-item">C++</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>我的專案</h2>
+            <br />
+            <!-- jQuery 互動功能區 -->
+            <button id="showProjects">顯示專案</button>
+            <div id="projectList" style="display:none;">
+                <ul>
+                    <li>專案 1</li>
+                    <li>專案 2</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>©Sharon_peng</p>
+    </footer>
+
+    <!-- 1. 先引入 jQuery（重要！）-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- 2. 再執行你的 JavaScript -->
+    <script>
+        $(document).ready(function () {
+            console.log("jQuery 載入成功！");
+
+            // 點擊按鈕顯示/隱藏專案列表
+            $('#showProjects').click(function () {
+                $('#projectList').slideToggle();
+            });
+
+            // 平滑滾動效果
+            $('nav a').click(function (e) {
+                e.preventDefault();
+                var target = $(this).attr('href');
+                $('html, body').animate({
+                    scrollTop: $(target).offset().top - 80  // 減去 header 高度
+                }, 800);
+            });
+
+            // 技能項目滑入效果
+            $('.skill-item').hover(
+                function () {
+                    $(this).css('transform', 'scale(1.1)');
+                },
+                function () {
+                    $(this).css('transform', 'scale(1)');
+                }
+            );
+        });
+    </script>
+</body>
+</html>
